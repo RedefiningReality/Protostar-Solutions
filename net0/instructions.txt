@@ -1,0 +1,20 @@
+In a terminal (terminal 1), run the process as a root user:
+user@protostar:~$ su root
+Password: godmode
+user@protostar:~# /opt/protostar/bin/net0
+
+In a separate terminal (terminal 2), prepare python for string to hex converson:
+user@protostar:~$ python
+Python 2.6.6 (r266:84292, Dec 27 2010, 00:02:40)
+[GCC 4.4.5] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import struct
+
+In a separate terminal (terminal 3), connect to the process started in terminal 1:
+user@protostar:~$ echo -e `cat` | nc 127.0.0.1 2999
+
+In terminal 2, convert the string to hex:
+>>> struct.pack("I", <string>)
+
+In terminal 3, copy the returned value (without the quotes) into the terminal.
+Press enter to create a newline and Ctr+D to send the output from cat to echo.
